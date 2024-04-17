@@ -34,7 +34,6 @@ const getNotes = async () => {
             'Content-Type': 'application/json'
         }
     })
-    const whatever = await res.json();
-    console.log(whatever)
-    return whatever
+    const respData = await res.json();
+    return respData;
 };
