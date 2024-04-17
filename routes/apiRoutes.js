@@ -23,7 +23,17 @@ router.post('/', (req, res) => {
     };
     res.json(response);
 });
-    
+
+notes.delete('/:id', (req, res) => {
+    const noteId = req.params.id
+    readFromFile(dbPath, 'utf8').then((data) => {
+        const parseData = JSON.parse(data)
+        const newData = parseData.filter((note) => note.id !== noteId)
+        return newData
+    }).then((newerData) => writeToFile(dbPath, newerData)).then((newerData) => {
+        res.json(newerData)
+    })
+});
 
 
 module.exports = notes;
