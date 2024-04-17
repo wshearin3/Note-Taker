@@ -23,3 +23,18 @@ const show = (elem) => {
 const hide = (elem) => {
     elem.style.display = 'none';
 };
+
+let activeNote = {};
+
+const getNotes = async () => {
+    console.log("getNotes")
+    const res = await fetch('/api/notes', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const whatever = await res.json();
+    console.log(whatever)
+    return whatever
+};
