@@ -28,7 +28,7 @@ let activeNote = {};
 
 const getNotes = async () => {
     console.log("getNotes")
-    const res = await fetch('/api/notes', {
+    const res = await fetch('/notes', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ const getNotes = async () => {
 };
 
 const saveNote = (note) =>
-    fetch('/api/notes', {
+    fetch('/notes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const saveNote = (note) =>
     });
 
 const deleteNote = (id) =>
-    fetch(`/api/notes/${id}`, {
+    fetch(`/notes/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
