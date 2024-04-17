@@ -17,4 +17,6 @@ app.listen(PORT, () =>
 console.log(`app listenting at http://localhost:${PORT}`)
 )
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
