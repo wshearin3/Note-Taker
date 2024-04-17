@@ -1,21 +1,19 @@
-const fs = require('fs');
-const path = require('path');
 const notes = require('express').Router();
 const { json } = require('express');
 const { readFromFile, readAndAppend, writeToFile } = require('../helpers/fsUtils');
 
-const dbPath = path.join(__dirname, './db/db.json');
+
 
 notes.get('/', (req, res) => {
 
-    readFromFile(dbPath).then((data) => res.join(JSON.parse(data)));
+    readFromFile('./db/db.json').then((data) => res.join(JSON.parse(data)));
 
 });
 
-router.post('/', (req, res) => {
+notes.post('/', (req, res) => {
     const newNote = req.body;
     newNote.id = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    readAndAppend(newNote, dbPath);
+    readAndAppend(newNote, './db/db.json');
 
     const response = {
         status: 'succes',
@@ -26,11 +24,11 @@ router.post('/', (req, res) => {
 
 notes.delete('/:id', (req, res) => {
     const noteId = req.params.id
-    readFromFile(dbPath, 'utf8').then((data) => {
+    readFromFile('./db/db.json', 'utf8').then((data) => {
         const parseData = JSON.parse(data)
         const newData = parseData.filter((note) => note.id !== noteId)
         return newData
-    }).then((newerData) => writeToFile(dbPath, newerData)).then((newerData) => {
+    }).then((newerData) => writeToFile('./db/db.json', newerData)).then((newerData) => {
         res.json(newerData)
     })
 });
