@@ -54,3 +54,22 @@ const deleteNote = (id) =>
             'Content-Type': 'application/json'
         }
     });
+
+const renderActiveNote = () => {
+    hide(saveNoteBtn);
+    hide(clearBtn);
+    console.log(activeNote)
+    if (activeNote.id) {
+        show(newNoteBtn);
+        noteTitle.setAttribute('readonly', true);
+        noteText.setAttribute('readonly', true);
+        noteTitle.value = activeNote.title;
+        noteText.value = activeNote.text;
+    } else {
+        hide(newNoteBtn);
+        noteTitle.removeAttribute('readonly');
+        noteText.removeAttribute('readonly');
+        noteTitle.value = '';
+        noteText.value = '';
+    }
+};
