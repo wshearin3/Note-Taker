@@ -13,8 +13,13 @@ if (window.location.pathname === '/notes') {
     newNoteBtn = document.querySelector('.new-note');
     clearBtn = document.querySelector('.clear-btn');
     noteList = document.querySelectorAll('.list-container .list-group');
-  }
+}
 //Shows an element
-  const show = (elem) => {
+const show = (elem) => {
     elem.style.display = 'inline';
-  };
+};
+
+// Hides an element
+const hide = (elem) => {
+    elem.style.display = 'none';
+};
