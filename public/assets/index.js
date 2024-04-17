@@ -117,3 +117,15 @@ const handleNewNoteView = (e) => {
     show(clearBtn);
     renderActiveNote();
 };
+
+// Render Buttons Based on Form State
+const handleRenderBtns = () => {
+    show(clearBtn);
+    if (!noteTitle.value.trim() && !noteText.value.trim()) {
+        hide(clearBtn);
+    } else if (!noteTitle.value.trim() || !noteText.value.trim()) {
+        hide(saveNoteBtn);
+    } else {
+        show(saveNoteBtn);
+    }
+};
