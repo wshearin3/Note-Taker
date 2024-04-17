@@ -27,8 +27,8 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = async () => {
-    console.log("getNotes")
-    const res = await fetch('/notes', {
+    
+    const res = await fetch('/api/notes', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ const getNotes = async () => {
 };
 
 const saveNote = (note) =>
-    fetch('/notes', {
+    fetch('/api/notes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const saveNote = (note) =>
     });
 
 const deleteNote = (id) =>
-    fetch(`/notes/${id}`, {
+    fetch(`/api/notes/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -190,10 +190,18 @@ const renderNoteList = async (notes) => {
 const getAndRenderNotes = () => {
     getNotes()
         .then(response => {
-            renderNoteList(response);
+            // Check if response is valid JSON
+            if (response && response.length) {
+                renderNoteList(response);
+            } else {
+                console.error('Invalid response from server:', response);
+                // Display a user-friendly error message
+                // For example: renderNoteList([]) to clear the list
+            }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error fetching notes:', error);
+            // Display a user-friendly error message
         });
 };
 
