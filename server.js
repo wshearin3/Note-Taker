@@ -16,3 +16,5 @@ res.sendFile(path.join(__dirname, 'notes.html'))
 app.listen(PORT, () =>
 console.log(`app listenting at http://localhost:${PORT}`)
 )
+
+app.use(express.static('public'));
