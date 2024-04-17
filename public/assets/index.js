@@ -14,3 +14,7 @@ if (window.location.pathname === '/notes') {
     clearBtn = document.querySelector('.clear-btn');
     noteList = document.querySelectorAll('.list-container .list-group');
   }
+//Shows an element
+  const show = (elem) => {
+    elem.style.display = 'inline';
+  };
