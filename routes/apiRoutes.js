@@ -12,26 +12,18 @@ notes.get('/', (req, res) => {
 
 });
 
-router.post('/notes', (req, res) => {
+router.post('/', (req, res) => {
     const newNote = req.body;
     newNote.id = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    readAndAppend(newNote, dbPath);
 
-    fs.readFile(dbPath, 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Failed to read notes.' });
-        }
-        const notes = JSON.parse(data);
-        notes.push(newNote);
-        fs.writeFile(dbPath, JSON.stringify(notes), (err) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: 'Failed to save note.' });
-            }
-            res.json(newNote);
-        });
-    });
+    const response = {
+        status: 'succes',
+        body: newNote,
+    };
+    res.json(response);
 });
+    
 
 
 module.exports = notes;
