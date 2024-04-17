@@ -84,3 +84,21 @@ const handleNoteSave = () => {
         renderActiveNote();
     });
 };
+
+// Deletes the note
+const handleNoteDelete = (e) => {
+    // Prevents the click listener from being called when the inside button is clicked
+    e.stopPropagation();
+
+    const note = e.target;
+    const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+
+    if (activeNote.id === noteId) {
+        activeNote = {};
+    }
+
+    deleteNote(noteId).then(() => {
+        getAndRenderNotes();
+        renderActiveNote();
+    });
+};
