@@ -21,5 +21,5 @@ res.sendFile(path.join(__dirname, './public/notes.html'))
 );
 
 app.listen(PORT, () =>
-console.log(`app listenting at http://localhost:${PORT}`)
+console.log(`app listenting `)
 );
