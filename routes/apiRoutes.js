@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const router = require('express').Router();
+const notes = require('express').Router();
 
 const dbPath = path.join(__dirname, './db/db.json');
 
@@ -36,4 +36,4 @@ router.post('/notes', (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = notes;
